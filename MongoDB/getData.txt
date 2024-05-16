@@ -1,0 +1,40 @@
+getData
+
+exports = function({ query, headers, body}, response) {
+  const newBody = JSON.parse(body.text());
+  const myPassword = "jung0217";
+  const passwd = newBody.password;
+  const newObj = {
+    "spo2": newBody.spo2,
+    "beat": newBody.beat,
+    "mood": newBody.mood,
+    //"password": newBody.password,
+  }
+  if(passwd == myPassword){
+    const doc = context.service.get("mongodb-atlas").db("myDB").collection("myCollection").insertOne(newObj);
+  }
+  else{
+    return "Not a valiad user";
+  }
+  return newObj;
+};
+
+postData
+
+exports = function({ query, headers, body}, response) {
+  const doc = context.service.get("mongodb-atlas").db("myDB").collection("myCollection").find().sort({_id:-1}).limit(10);
+  return doc;
+};
+
+
+
+
+/esp32post
+https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-nbjpw/endpoint/esp32post
+
+https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-nbjpw/endpoint/esp32get
+
+https://stackoverflow.com/questions/69173015/how-can-i-get-bpm-and-spo2-with-max30102-in-a-coordinated-way-of-coding
+
+
+

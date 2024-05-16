@@ -1,0 +1,21 @@
+timestamp
+2023-11-22T19:42:00.000+00:00
+
+[{"_id":"65622a86215c3b41e3c8fef6","spo2":95,"beat":70,"mood":761,"timestamp":"2023-11-25T17:10:30Z"},{"_id":"65622a75fce9035abda2daa3","spo2":98,"beat":81,"mood":549,"timestamp":"2023-11-25T17:10:13Z"},{"_id":"65622a655069f55d6fb9c610","spo2":97,"beat":78,"mood":458,"timestamp":"2023-11-25T17:9:57Z"},{"_id":"65622a54fce9035abda2d055","spo2":98,"beat":74,"mood":572,"timestamp":"2023-11-25T17:9:40Z"},{"_id":"65622a445069f55d6fb9bcc5","spo2":98,"beat":88,"mood":406,"timestamp":"2023-11-25T17:9:24Z"},{"_id":"65622a345069f55d6fb9b698","spo2":98,"beat":87,"mood":797,"timestamp":"2023-11-25T17:9:8Z"},{"_id":"65622a235069f55d6fb9b154","spo2":98,"beat":74,"mood":492,"timestamp":"2023-11-25T17:8:51Z"},{"_id":"65622a135069f55d6fb9ad24","spo2":98,"beat":80,"mood":580,"timestamp":"2023-11-25T17:8:35Z"},{"_id":"65622a035069f55d6fb9a794","spo2":96,"beat":70,"mood":903,"timestamp":"2023-11-25T17:8:18Z"},{"_id":"656229f2fce9035abda2b486","spo2":97,"beat":84,"mood":722,"timestamp":"2023-11-25T17:8:2Z"}]
+
+{"_id":{"$oid":"655df93afce9035abd3ac570"}}
+
+
+Alex17301237104124
+
+2023-11-24T02:42:00.000+00:00
+
+
+22:36:16.963 -> 2023-11-25T14:36:17Z
+22:36:17.937 -> 2023-11-25T14:36:18Z
+22:36:18.935 -> 2023-11-25T14:36:19Z
+
+
+https://blog.udn.com/ptsafetyrm/6542402
+https://usefulangle.com/post/187/nodejs-get-date-time
+https://www.chimei.org.tw/main/cmh_department/59012/magazin/vol134/04-1.html

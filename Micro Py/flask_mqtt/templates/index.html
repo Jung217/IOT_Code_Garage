@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Video Streaming Demonstration</title>
+  </head>
+  <body>
+    <h1>Video Streaming Demonstration</h1>
+    <div class="container">
+      <div>
+        <img src="{{ url_for('video_feed') }}" id="bg" class="canv" height="300">
+      </div>
+      
+      <img src="{{url_for('static', filename='test.jpg')}}" class="canv" height="300">
+      <div style="margin-left: 60;">
+        <h2>Last captured class: </h2>
+        <h1 class="res">{{ pred_class }}</h1>
+      </div>
+    </div>
+    <form method="post" action="/">
+      <input type="submit" value="Capture" name="capture">
+    </form>
+    
+  </body>
+</html>
