@@ -57,7 +57,7 @@ void http_update(char *msg1, char *msg2, char *msg3) {
   String spo2 = "{\"spo2\": ";
   String beat = ", \"beat\": ";
   String mood = ", \"time\": ";
-  String pw = ", \"password\":";
+  String pw = ", \"password\": ";
   spo2.concat(msg1);
   beat.concat(msg2);
   mood.concat(msg3);
