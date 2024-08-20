@@ -1,0 +1,305 @@
+[
+    {
+        "id": "8e13da7783c33fad",
+        "type": "inject",
+        "z": "9681a2ec5ce64087",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "15",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180.00003051757812,
+        "y": 238.9999713897705,
+        "wires": [
+            [
+                "603770547dd36d77"
+            ]
+        ]
+    },
+    {
+        "id": "603770547dd36d77",
+        "type": "http request",
+        "z": "9681a2ec5ce64087",
+        "name": "Get MongoDB Data",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-nbjpw/endpoint/esp32get",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 390.0000305175781,
+        "y": 318.9999713897705,
+        "wires": [
+            [
+                "6ec336a1ec85dafa",
+                "55e17c628b2ef20d",
+                "1e48921f81ab6f93",
+                "b1ddaca5097d02d7",
+                "8c33412e14acf19f",
+                "1e61d289539ab176",
+                "465e4819444a5e8e"
+            ]
+        ]
+    },
+    {
+        "id": "6ec336a1ec85dafa",
+        "type": "function",
+        "z": "9681a2ec5ce64087",
+        "name": "Get Data Fn",
+        "func": "const data = msg.payload;\nlet time = 0;\nlet da3 = [];\n\nfor(let i=data.length-1 ; i>=0 ; i--){\n    time = { \"x\": data[i].timestamp, \"y\": data[i].time };\n    //time = time / 60;\n    da3.push(time);\n}\nmsg.payload=[\n    {\n        \"series\": [\"Time\"],\n        \"data\": [da3],\n        \"label\": [\"Time\"]\n    }\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d34c6b808f8af941",
+        "type": "ui_chart",
+        "z": "9681a2ec5ce64087",
+        "name": "",
+        "group": "5707f8d7a1f42673",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "label": "Time",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "90",
+        "removeOlder": 1,
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#3e82c1",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 810,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d6163c83b0b08734",
+        "type": "ui_chart",
+        "z": "9681a2ec5ce64087",
+        "name": "",
+        "group": "90a29c5e39bc6fc5",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "label": "Beat",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "50",
+        "ymax": "150",
+        "removeOlder": 1,
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#d62728",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 810,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c33412e14acf19f",
+        "type": "function",
+        "z": "9681a2ec5ce64087",
+        "name": "Get Data Fn",
+        "func": "const data = msg.payload;\nlet beat = 0;\nlet da2 = [];\n\nfor(let i=data.length-1 ; i>=0 ; i--){\n    beat = { \"x\": data[i].timestamp, \"y\": data[i].beat };\n    da2.push(beat);\n}\nmsg.payload=[\n    {\n        \"series\": [\"Beat\"],\n        \"data\": [da2],\n        \"label\": [\"Beat\"]\n    }\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 320,
+        "wires": [
+            [
+                "d6163c83b0b08734"
+            ]
+        ]
+    },
+    {
+        "id": "1e61d289539ab176",
+        "type": "function",
+        "z": "9681a2ec5ce64087",
+        "name": "Get Data Fn",
+        "func": "const data = msg.payload;\nlet spo2 = 0;\nlet da1 = [];\n\nfor(let i=data.length-1 ; i>=0 ; i--){\n    spo2 = { \"x\": data[i].timestamp, \"y\": data[i].spo2 };\n    da1.push(spo2);\n}\nmsg.payload=[\n    {\n        \"series\": [\"Spo2\"],\n        \"data\": [da1],\n        \"label\": [\"Spo2\"]\n    }\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 260,
+        "wires": [
+            [
+                "4395eabeee52fdb8"
+            ]
+        ]
+    },
+    {
+        "id": "4395eabeee52fdb8",
+        "type": "ui_chart",
+        "z": "9681a2ec5ce64087",
+        "name": "",
+        "group": "8daf749aead640fa",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "label": "SpO2",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "90",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#2ca028",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 810,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "465e4819444a5e8e",
+        "type": "function",
+        "z": "9681a2ec5ce64087",
+        "name": "Get Data Fn",
+        "func": "const data = msg.payload;\nlet time = 0;\nlet da3 = [];\n\nfor(let i=data.length-1 ; i>=0 ; i--){\n    time = { \"x\": data[i].timestamp, \"y\": data[i].time/60 };\n    //time = time / 60;\n    da3.push(time);\n}\nmsg.payload=[\n    {\n        \"series\": [\"Time\"],\n        \"data\": [da3],\n        \"label\": [\"Time\"]\n    }\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 460,
+        "wires": [
+            [
+                "d34c6b808f8af941"
+            ]
+        ]
+    },
+    {
+        "id": "5707f8d7a1f42673",
+        "type": "ui_group",
+        "name": "Chart3",
+        "tab": "5ed983e1249138c5",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "90a29c5e39bc6fc5",
+        "type": "ui_group",
+        "name": "Chart2",
+        "tab": "5ed983e1249138c5",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8daf749aead640fa",
+        "type": "ui_group",
+        "name": "Chart1",
+        "tab": "5ed983e1249138c5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5ed983e1249138c5",
+        "type": "ui_tab",
+        "name": "Slow Joggng Dashboard",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
